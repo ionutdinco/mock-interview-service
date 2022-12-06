@@ -46,7 +46,6 @@ public class PostServiceImpl implements PostService{
         List<PostEntity> postEntities =
                 postEntityRepository.findAll(Sort.by("timeStamp").descending());
         List<Post> posts = new ArrayList<>();
-        BeanUtils.copyProperties(postEntities, posts);
         posts = postEntities.stream()
                 .map((postEntity -> Post.builder()
                         .id(postEntity.getId())
@@ -58,6 +57,6 @@ public class PostServiceImpl implements PostService{
                         .timeStamp(postEntity.getTimeStamp())
                         .build()))
                 .collect(Collectors.toList());
-        return null;
+        return posts;
     }
 }

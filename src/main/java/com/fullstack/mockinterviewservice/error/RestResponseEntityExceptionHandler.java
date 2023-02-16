@@ -22,4 +22,9 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .body(errorMessage);
     }
+
+    public ResponseEntity<Void> domainEmptyException(DomainEmptyException domainEmptyException, WebRequest webRequest){
+        return ResponseEntity.noContent().build();
+
+    }
 }

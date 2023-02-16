@@ -13,17 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProfessionEntity {
+public class QuizNotificationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long professionId;
-    private String name;
+    private Long id;
+    private String email;
+    private String timeStamp;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "domain_id",
-            referencedColumnName = "domainId"
-    )
-    private DomainEntity domainEntity;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(referencedColumnName = "id")
+    private List<QuizEntity> quizEntity;
 
 }

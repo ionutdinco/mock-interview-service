@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -32,5 +32,5 @@ public class ProfessionalEntity {
                     referencedColumnName = "professionId"
             )
     )
-    private List<ProfessionEntity> professionEntities;
+    private Set<ProfessionEntity> professionEntities;
 }

@@ -3,6 +3,7 @@ package com.fullstack.mockinterviewservice.service;
 import com.fullstack.mockinterviewservice.entity.DomainEntity;
 import com.fullstack.mockinterviewservice.entity.ProfessionEntity;
 import com.fullstack.mockinterviewservice.error.ProfessionAlreadyExistsException;
+import com.fullstack.mockinterviewservice.model.Profession;
 import com.fullstack.mockinterviewservice.repository.DomainRepository;
 import com.fullstack.mockinterviewservice.repository.ProfessionRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,5 +45,16 @@ public class ProfessionServiceImpl implements ProfessionService{
                     .build();
             professionEntity1 = professionRepository.save(professionEntity1);
         }
+    }
+
+    @Override
+    public List<Profession> getProfessionsOfDomain(String domain) {
+        List<ProfessionEntity> professionEntities = professionRepository.findByDomain(domain);
+          return professionEntities.stream()
+                .map((professionEntity -> Profession.builder()
+                        .name(professionEntity.getName())
+                        .id(professionEntity.getProfessionId())
+                        .build()))
+                .toList();
     }
 }

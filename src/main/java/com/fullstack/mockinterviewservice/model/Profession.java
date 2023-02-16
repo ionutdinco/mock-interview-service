@@ -9,12 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Contact {
+public class Profession {
     private Long id;
-    private String emailF;
-    private String nameF;
-    private String iconF;
-    private String emailS;
-    private String nameS;
-    private String iconS;
+    private String name;
 }
